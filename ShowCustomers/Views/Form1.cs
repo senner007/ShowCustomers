@@ -43,7 +43,9 @@ namespace ShowCustomers
         {
             set
             {
+                listBudget.BeginUpdate();
                 value?.ToList().ForEach(v => listBudget.Items.Insert(0, new ListViewItem(v)));
+                listBudget.EndUpdate();
                 listBudget.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             }
         }
@@ -52,7 +54,9 @@ namespace ShowCustomers
             set
 
             {
+                listCurrent.BeginUpdate();
                 value?.ToList().ForEach(v => listCurrent.Items.Insert(0, new ListViewItem(v)));
+                listCurrent.EndUpdate();
                 listCurrent.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             }
         }
