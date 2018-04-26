@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ShowCustomers.Model
+namespace ShowCustomers.Models
 {
     public abstract class Bank
     {

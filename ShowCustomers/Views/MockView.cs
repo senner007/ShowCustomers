@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ShowCustomers.View  
 {
@@ -16,8 +17,8 @@ namespace ShowCustomers.View
         public string AccountStatusText { get; set; }
 
         public string DatePick { get; set; }
-        public string[] BudgetList { get; set; }
-        public string[] CurrentList { get; set; }
+        public IEnumerable<string[]> BudgetList { get; set; }
+        public IEnumerable<string[]> CurrentList { get; set; }
         public string BudgetTotal { get; set; }
         public string CurrentTotal { get; set; }
         public string NameText { get; set; }

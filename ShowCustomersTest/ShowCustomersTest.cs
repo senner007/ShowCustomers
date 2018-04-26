@@ -1,9 +1,11 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ShowCustomers.Model;
+using ShowCustomers.Models;
 using ShowCustomers.View;
 using ShowCustomers.Presenter;
 using System.Reflection;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ShowCustomersTest
 {
@@ -205,14 +207,14 @@ namespace ShowCustomersTest
             _present.InsertTransaction();
 
 
-            string dateExpected = "24-04-2018 00:00:00";
-            string dateActual = _view.BudgetList[0];
+            string dateExpected = "26-04-2018 00:00:00";
+            string dateActual = _view.BudgetList.FirstOrDefault()[0];
 
             string amountExpected = "50.00";
-            string amountActual = _view.BudgetList[1];
+            string amountActual = _view.BudgetList.FirstOrDefault()[1];
 
             string totalExpected = "250.00";
-            string totalActual = _view.BudgetList[2];
+            string totalActual = _view.BudgetList.FirstOrDefault()[2];
 
             Assert.AreEqual(dateExpected, dateActual);
             Assert.AreEqual(amountExpected, amountActual);
@@ -240,14 +242,14 @@ namespace ShowCustomersTest
             _view.CPRText = "1111111111";
             _present.GetCustomer(); // log in
 
-            string dateExpected = "24-04-2018 00:00:00"; // Verify Transactions
-            string dateActual = _view.BudgetList[0];
+            string dateExpected = "26-04-2018 00:00:00"; // Verify Transactions
+            string dateActual = _view.BudgetList.Skip(1).FirstOrDefault()[0];
 
             string amountExpected = "-100.00";
-            string amountActual = _view.BudgetList[1];
+            string amountActual = _view.BudgetList.Skip(1).FirstOrDefault()[1];
 
             string totalExpected = "150.00";
-            string totalActual = _view.BudgetList[2];
+            string totalActual = _view.BudgetList.Skip(1).FirstOrDefault()[2];
 
             Assert.AreEqual(dateExpected, dateActual);
             Assert.AreEqual(amountExpected, amountActual);

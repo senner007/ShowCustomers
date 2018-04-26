@@ -3,6 +3,8 @@ using ShowCustomers.View;
 using ShowCustomers.Presenter;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ShowCustomers
 {
@@ -37,19 +39,20 @@ namespace ShowCustomers
 
         public string DatePick => dateTimePicker.Value.ToShortDateString(); 
 
-        public string[] BudgetList
-        {
-            set
-            {         
-                listBudget.Items.Insert(0, new ListViewItem(value)); 
-                listBudget.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            }
-        }
-        public string[] CurrentList
+        public IEnumerable<string[]> BudgetList
         {
             set
             {
-                listCurrent.Items.Insert(0, new ListViewItem(value));
+                value?.ToList().ForEach(v => listBudget.Items.Insert(0, new ListViewItem(v)));
+                listBudget.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            }
+        }
+        public IEnumerable<string[]> CurrentList
+        {
+            set
+
+            {
+                value?.ToList().ForEach(v => listCurrent.Items.Insert(0, new ListViewItem(v)));
                 listCurrent.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             }
         }

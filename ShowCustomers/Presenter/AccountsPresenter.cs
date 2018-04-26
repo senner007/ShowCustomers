@@ -1,51 +1,42 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using ShowCustomers.Model;
+using ShowCustomers.Models;
 namespace ShowCustomers.Presenter
 {
     public class AccountsPresenter : BankPresenter 
     {
         public void GetTransactions()
         {
-            // Performance kan forbedres
             Console.WriteLine("Get Transactions");
-            // .? c# 6 null conditional operator
-            _manage.GetBudgetAccount(_loginCPR)?.Transactions.ForEach(b => _view.BudgetList = insertArr(b));
 
-            _manage.GetCurrentAccount(_loginCPR)?.Transactions.ForEach(c => _view.CurrentList = insertArr(c));
+            _view.BudgetList = _manage.TransactionsToArray(_manage.GetBudgetAccount(_loginCPR));
 
-            string[] insertArr(Transaction trans) => new string[3] {
-                trans.Date,
-                trans.Value.Decimals2(),
-                trans.Total.Decimals2()
-            };
+            _view.CurrentList = _manage.TransactionsToArray(_manage.GetCurrentAccount(_loginCPR));
 
         }
         private bool _Insert()
         {
             if (!determine.IfDec(_view.AmountText)) return false;
-            bool success = false;
-
             if (_view.BudgetModifyRadio)
             {
-                if (_manage.BudgetTransact(_loginCPR, _view.DatePick, Convert.ToDecimal(_view.AmountText)))
-                        _view.BudgetList = insertArr(_manage.GetBudgetAccount(_loginCPR));              
+                var result = _manage.BudgetTransact(_loginCPR, _view.DatePick, Convert.ToDecimal(_view.AmountText));
+                if (result != null)
+                {
+                    _view.BudgetList = result;
+                    return true;
+                };
             }
             else if (_view.CurrentModifyRadio)
             {
-                if (_manage.CurrentTransact(_loginCPR, _view.DatePick, Convert.ToDecimal(_view.AmountText)))
-                        _view.CurrentList = insertArr(_manage.GetCurrentAccount(_loginCPR));
-            }
-            string[] insertArr(Account _account)
-            {
-               success = true;
-               return new string[3] {
-                    _account.Transactions.Last().Date,
-                    _account.Transactions.Last().Value.Decimals2(),
-                    _account.Total.Decimals2()
+                var result = _manage.CurrentTransact(_loginCPR, _view.DatePick, Convert.ToDecimal(_view.AmountText));
+                if (result != null)
+                {
+                    _view.CurrentList = result;
+                    return true;
                 };
-            }      
-            return success;
+            }
+        return false;
 
         }
         private bool _Create()

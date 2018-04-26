@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ShowCustomers.Model
+namespace ShowCustomers.Models
 {
     public class Account :  ICPR
     {

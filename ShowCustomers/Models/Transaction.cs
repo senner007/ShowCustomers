@@ -1,4 +1,4 @@
-﻿namespace ShowCustomers.Model
+﻿namespace ShowCustomers.Models
 {
     public struct Transaction
     {

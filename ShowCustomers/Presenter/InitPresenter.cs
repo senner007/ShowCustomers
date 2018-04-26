@@ -1,4 +1,4 @@
-﻿using ShowCustomers.Model;
+﻿using ShowCustomers.Models;
 using ShowCustomers.View;
 using System;
 

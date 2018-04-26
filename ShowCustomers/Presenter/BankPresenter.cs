@@ -1,5 +1,5 @@
 ﻿using ShowCustomers.View;
-using ShowCustomers.Model;
+using ShowCustomers.Models;
 using System.Globalization;
 
 namespace ShowCustomers.Presenter
@@ -30,9 +30,6 @@ namespace ShowCustomers.Presenter
         }
        
     }
-    static class Extensions
-    {
-        public static string Decimals2(this decimal num) => num.ToString("#.00", CultureInfo.InvariantCulture);
-    }
+   
 
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ShowCustomers.Model
+namespace ShowCustomers.Models
 { 
     public class ManageAccounts : Bank
     {
@@ -44,17 +44,25 @@ namespace ShowCustomers.Model
             return true;
         }
 
-        public bool CurrentTransact(long cpr, string date, decimal value) =>  _Transact(GetCurrentAccount(cpr), date,  value);
-        public bool BudgetTransact(long cpr, string date, decimal value) => _Transact(GetBudgetAccount(cpr), date, value);
+        public IEnumerable<string[]> CurrentTransact(long cpr, string date, decimal value) =>  _Transact(GetCurrentAccount(cpr), date,  value);
+        public IEnumerable<string[]> BudgetTransact(long cpr, string date, decimal value) => _Transact(GetBudgetAccount(cpr), date, value);
 
-        private bool _Transact(Account account, string date, decimal value)
+        private IEnumerable<string[]> _Transact(Account account, string date, decimal value)
         {
-            if (account == null) return false;
+            if (account == null) return null;
             account.Transactions.Add(new Transaction { Date = date, Message = "Inserting money", Value = value, Total = account.Total + value });
             account.Total = account.Total + value;
             Console.WriteLine("MODEL : Transaction completed");
-            return true;
+            return new List<string[]> { new string[3] { date, value.Decimals2(), account.Total.Decimals2() } };
+            
         }
+        public IEnumerable<string[]> TransactionsToArray(Account account)
+        {
+            if (account == null) return null;
+                return account.Transactions.Select(t =>  new string[3]
+                 { t.Date, t.Value.Decimals2(), t.Total.Decimals2() });
+        }
+
         private T FindByCPR<T>(long cpr, List<T> list) where T : ICPR => list.FirstOrDefault(c => c.CPR == cpr);
         public Customer FindByName(string name) => _customers.FirstOrDefault(c => c.Name == name);
         public Customer FindCustomer(long cpr) => FindByCPR(cpr, _customers); 

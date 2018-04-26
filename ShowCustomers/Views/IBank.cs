@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ShowCustomers.View  // TODO : split op i flere view og presenters
 {
@@ -19,8 +20,8 @@ namespace ShowCustomers.View  // TODO : split op i flere view og presenters
 
         string DatePick { get; }
 
-        string[] BudgetList { set; }
-        string[] CurrentList { set; }
+        IEnumerable<string[]> BudgetList { set; }
+        IEnumerable<string[]> CurrentList { set; }
 
         string BudgetTotal { set; }
         string CurrentTotal { set; }

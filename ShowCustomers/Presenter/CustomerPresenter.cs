@@ -1,5 +1,5 @@
 ﻿using System;
-using ShowCustomers.Model;
+using ShowCustomers.Models;
 
 namespace ShowCustomers.Presenter
 {

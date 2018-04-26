@@ -54,6 +54,7 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Bank.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Extensions.cs" />
     <Compile Include="Models\ManageAccounts.cs" />
     <Compile Include="Models\ICPR.cs" />
     <Compile Include="Models\Transaction.cs" />
