@@ -207,7 +207,7 @@ namespace ShowCustomersTest
             _present.InsertTransaction();
 
 
-            string dateExpected = "26-04-2018 00:00:00";
+            string dateExpected = "27-04-2018 00:00:00";
             string dateActual = _view.BudgetList.FirstOrDefault()[0];
 
             string amountExpected = "50.00";
@@ -242,7 +242,7 @@ namespace ShowCustomersTest
             _view.CPRText = "1111111111";
             _present.GetCustomer(); // log in
 
-            string dateExpected = "26-04-2018 00:00:00"; // Verify Transactions
+            string dateExpected = "27-04-2018 00:00:00"; // Verify Transactions
             string dateActual = _view.BudgetList.Skip(1).FirstOrDefault()[0];
 
             string amountExpected = "-100.00";

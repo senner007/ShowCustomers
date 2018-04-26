@@ -46,7 +46,8 @@ namespace ShowCustomers.Presenter
         private void DisplayCustomer(Customer customer, string message, string fail)
         { 
             ClearLabel(); // slet alle tekstfelter og tekstlabels
-            _view.ClearTransactions(); // fjern transaktioner
+            _view.BudgetList = null; // fjern transaktioner
+            _view.CurrentList = null;
             _loginCPR = customer != null ? customer.CPR : 0; // sæt login. 0 hvis ikke indlæst
             _view.DisplayUser = customer != null ? customer.NickName + " " + message : fail + " Ikke indlæst"; // Vis meddelelse
             ShowAccounts(true); // vis konti for bruger

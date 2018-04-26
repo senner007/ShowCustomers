@@ -37,10 +37,6 @@ namespace ShowCustomers.View
         public event Action OnInsert;
         public event Action OnTextChange;
 
-        public void ClearTransactions()
-        {
-          
-        }
     }
  
 }

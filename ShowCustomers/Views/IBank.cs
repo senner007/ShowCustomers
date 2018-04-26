@@ -43,7 +43,7 @@ namespace ShowCustomers.View  // TODO : split op i flere view og presenters
         event Action OnInsert;
         event Action OnTextChange;
 
-        void ClearTransactions();
+       // void ClearTransactions();
 
     }
  

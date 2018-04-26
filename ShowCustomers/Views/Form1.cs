@@ -43,6 +43,8 @@ namespace ShowCustomers
         {
             set
             {
+                if (value == null) listBudget.Items.Clear();
+
                 listBudget.BeginUpdate();
                 value?.ToList().ForEach(v => listBudget.Items.Insert(0, new ListViewItem(v)));
                 listBudget.EndUpdate();
@@ -54,6 +56,8 @@ namespace ShowCustomers
             set
 
             {
+                if (value == null) listCurrent.Items.Clear();
+
                 listCurrent.BeginUpdate();
                 value?.ToList().ForEach(v => listCurrent.Items.Insert(0, new ListViewItem(v)));
                 listCurrent.EndUpdate();
@@ -82,12 +86,12 @@ namespace ShowCustomers
         public event Action OnInsert;
 
 
-        public void ClearTransactions()
-        {
-            listBudget.Items.Clear();
-            listCurrent.Items.Clear();
+        //public void ClearTransactions()
+        //{
+        //    listBudget.Items.Clear();
+        //    listCurrent.Items.Clear();
 
-        }
+        //}
 
         private void buttonUpdateCustomer_Click(object sender, EventArgs e) => OnAddCustomer();
 
