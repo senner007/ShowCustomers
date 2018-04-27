@@ -6,6 +6,7 @@ using ShowCustomers.Presenter;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 
 namespace ShowCustomersTest
 {
@@ -239,8 +240,17 @@ namespace ShowCustomersTest
 
             _present.LogOut(); // log out
 
+            Trace.WriteLine(_view.BudgetList);
+
+            string totallogOutExpected = null;
+            string totallogOutActual = _view.BudgetList?.Skip(1).FirstOrDefault()[2];
+
+            Assert.AreEqual(totallogOutExpected, totallogOutActual);
+
             _view.CPRText = "1111111111";
             _present.GetCustomer(); // log in
+
+            Trace.WriteLine(_view.BudgetList);
 
             string dateExpected = "27-04-2018 00:00:00"; // Verify Transactions
             string dateActual = _view.BudgetList.Skip(1).FirstOrDefault()[0];
