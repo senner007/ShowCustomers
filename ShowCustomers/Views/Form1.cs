@@ -85,14 +85,6 @@ namespace ShowCustomers
         public event Action OnLogOut; 
         public event Action OnInsert;
 
-
-        //public void ClearTransactions()
-        //{
-        //    listBudget.Items.Clear();
-        //    listCurrent.Items.Clear();
-
-        //}
-
         private void buttonUpdateCustomer_Click(object sender, EventArgs e) => OnAddCustomer();
 
         private void buttonGetCustomer_Click(object sender, EventArgs e)  => OnGetCustomer(); // Invoke event

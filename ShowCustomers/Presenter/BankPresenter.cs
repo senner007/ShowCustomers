@@ -27,6 +27,8 @@ namespace ShowCustomers.Presenter
             _view.CPRText = "";
             _view.AddressText = "";
             _view.AmountText = "";
+            _view.BudgetList = null; // fjern transaktioner
+            _view.CurrentList = null;
         }
        
     }

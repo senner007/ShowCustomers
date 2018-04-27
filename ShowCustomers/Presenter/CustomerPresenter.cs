@@ -36,18 +36,20 @@ namespace ShowCustomers.Presenter
             // Indlæs ved cpr
             if (determine.IfCPR(_view.CPRText))
             {
-                DisplayCustomer(_manage.FindCustomer(Convert.ToInt64(_view.CPRText)), "er indlæst ved CPR", "CPR ikke fundet");
+                DisplayCustomer(_manage.FindCustomer(Convert.ToInt64(_view.CPRText)), 
+                    "er indlæst ved CPR", 
+                    "CPR ikke fundet");
             } //Indlæs ved navn              
             else if (determine.IfName(_view.NameText))
             {
-                DisplayCustomer(_manage.FindByName(_view.NameText), "er indlæst ved navn", "Navn ikke fundet");
+                DisplayCustomer(_manage.FindByName(_view.NameText), 
+                    "er indlæst ved navn", 
+                    "Navn ikke fundet");
             }             
         }
         private void DisplayCustomer(Customer customer, string message, string fail)
         { 
-            ClearLabel(); // slet alle tekstfelter og tekstlabels
-            _view.BudgetList = null; // fjern transaktioner
-            _view.CurrentList = null;
+            ClearLabel(); // slet alle tekstfelter og tekstlabels og listviews
             _loginCPR = customer != null ? customer.CPR : 0; // sæt login. 0 hvis ikke indlæst
             _view.DisplayUser = customer != null ? customer.NickName + " " + message : fail + " Ikke indlæst"; // Vis meddelelse
             ShowAccounts(true); // vis konti for bruger
