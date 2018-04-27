@@ -1,4 +1,4 @@
-﻿using ShowCustomers.View;
+﻿using ShowCustomers.Views;
 using ShowCustomers.Models;
 
 
@@ -6,10 +6,11 @@ namespace ShowCustomers.Presenter
 {
     public abstract class BankPresenter
     {      
-        protected IBank _view;
-        protected long _loginCPR = 0;
-        protected ManageAccounts _manage;
-        protected Determine determine = new Determine();
+        protected ICustomer _view;
+        public long _loginCPR = 0;
+        protected ManageAccounts _manage = new ManageAccounts();
+        protected Determine determine = new Determine(); // should maybe be static
+
 
         protected void ShowLabel()
         {
@@ -26,9 +27,7 @@ namespace ShowCustomers.Presenter
             _view.NameText = "";
             _view.CPRText = "";
             _view.AddressText = "";
-            _view.AmountText = "";
-            _view.BudgetList = null; // fjern transaktioner
-            _view.CurrentList = null;
+       
         }
        
     }

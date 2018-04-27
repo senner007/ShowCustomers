@@ -1,11 +1,29 @@
 ﻿using System;
 using ShowCustomers.Models;
+using ShowCustomers.Views;
 
 namespace ShowCustomers.Presenter
 {
-    public class CustomerPresenter : AccountsPresenter
+
+    public delegate void EventWithArgs(bool success, string message, string fail); // necessary ?
+
+    public class CustomerPresenter : BankPresenter
     {
-        
+        public event Action CallGetTransactions;
+        public event Action CallClearAccounts;
+        public event EventWithArgs CallShowAccounts;
+
+        public CustomerPresenter(ICustomer view)
+        {
+            Console.WriteLine("CustomerPresenter Constructor");  
+            _view = view;
+            _view.OnAddCustomer += CreateUpdateCustomer;
+            _view.OnGetCustomer += GetCustomer;
+            _view.OnTextChange += ShowLabel;         
+            _view.OnLogOut += LogOut;
+           
+        }
+
         public void CreateUpdateCustomer() 
         {          
             if (!determine.IfValidUser(_view.NameText, _view.CPRText, _view.AddressText)) return;
@@ -50,10 +68,11 @@ namespace ShowCustomers.Presenter
         private void DisplayCustomer(Customer customer, string message, string fail)
         { 
             ClearLabel(); // slet alle tekstfelter og tekstlabels og listviews
+            CallClearAccounts();
             _loginCPR = customer != null ? customer.CPR : 0; // sæt login. 0 hvis ikke indlæst
             _view.DisplayUser = customer != null ? customer.NickName + " " + message : fail + " Ikke indlæst"; // Vis meddelelse
-            ShowAccounts(true); // vis konti for bruger
-            GetTransactions();  // hent transaktioner for bruger           
+            CallShowAccounts(true, "", "");
+            CallGetTransactions();                    
         }
         public void LogOut()
         {        

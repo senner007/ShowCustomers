@@ -1,10 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ShowCustomers.Models;
-using ShowCustomers.View;
+using ShowCustomers.Views;
 using ShowCustomers.Presenter;
 using System.Reflection;
-using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
 
@@ -22,13 +21,16 @@ namespace ShowCustomersTest
         */
         private ManageAccounts _manage;
         private MockView _view;
-        private CustomerPresenter _present;
+        private CustomerPresenter _customerPresenter;
+        private AccountsPresenter _accountsPresenter;
+
         [TestInitialize()]
         public void TestInitialize() // executes once before each test run https://stackoverflow.com/questions/13943078/c-sharp-unit-test-with-common-code-repeated
         {
             _manage = new ManageAccounts();
             _view = new MockView();
-            _present = new InitPresenter(_view);
+            _customerPresenter = new CustomerPresenter(_view);
+            _accountsPresenter = new AccountsPresenter(_view, _customerPresenter);
         }
         [TestCleanup()]
         public void Cleanup() // Clear static class for hver test https://colinmackay.scot/2007/06/16/unit-testing-a-static-class/
@@ -101,7 +103,7 @@ namespace ShowCustomersTest
             _view.NameText = "Smart004";
             _view.CPRText = "4444444444";
             _view.AddressText = "Somwewhere 1";
-            _present.CreateUpdateCustomer();
+            _customerPresenter.CreateUpdateCustomer();
 
             // model test
             long expected = 4444444444;
@@ -122,7 +124,7 @@ namespace ShowCustomersTest
             _view.CPRText = "5555555555";
             _view.AddressText = "Somwewhere 1";
 
-            _present.CreateUpdateCustomer();
+            _customerPresenter.CreateUpdateCustomer();
 
             string expected = "555555Bruger er oprettet. Bruger indlæst";
             string actual = _view.DisplayUser;
@@ -136,14 +138,14 @@ namespace ShowCustomersTest
             _view.NameText = "";
             _view.CPRText = "2222222222";
             _view.AddressText = "";
-            _present.GetCustomer();
+            _customerPresenter.GetCustomer();
 
             _view.CurrentCreateRadio = true;
-            _present.CreateAccount(); // create curtrent account
+            _accountsPresenter.CreateAccount(); // create curtrent account
 
             _view.CurrentCreateRadio = false;
             _view.BudgetCreateRadio = true;
-            _present.CreateAccount(); // create budget account
+            _accountsPresenter.CreateAccount(); // create budget account
 
             string expected_CurrentNumber = "123";
             string expected_CurrentTotal = ".00";
@@ -168,14 +170,14 @@ namespace ShowCustomersTest
             _view.NameText = "";
             _view.CPRText = "1111111111";
             _view.AddressText = "";
-            _present.GetCustomer();
+            _customerPresenter.GetCustomer();
 
             _view.CurrentCreateRadio = true;
-            _present.CreateAccount(); // create current account
+            _accountsPresenter.CreateAccount(); // create current account
 
             _view.CurrentCreateRadio = false;
             _view.BudgetCreateRadio = true;
-            _present.CreateAccount(); // create budget account
+            _accountsPresenter.CreateAccount(); // create budget account
 
             string expected_CurrentNumber = "123";
             string expected_CurrentTotal = "100.00";
@@ -200,15 +202,15 @@ namespace ShowCustomersTest
             _view.NameText = "";
             _view.CPRText = "1111111111";
             _view.AddressText = "";
-            _present.GetCustomer();
+            _customerPresenter.GetCustomer();
 
             _view.BudgetModifyRadio = true;
             _view.AmountText = "50";
             _view.DatePick = DateTime.Today.ToString();
-            _present.InsertTransaction();
+            _accountsPresenter.InsertTransaction();
 
 
-            string dateExpected = "27-04-2018 00:00:00";
+            string dateExpected = "28-04-2018 00:00:00";
             string dateActual = _view.BudgetList.FirstOrDefault()[0];
 
             string amountExpected = "50.00";
@@ -228,17 +230,17 @@ namespace ShowCustomersTest
             _view.NameText = "";
             _view.CPRText = "1111111111";
             _view.AddressText = "";
-            _present.GetCustomer();
+            _customerPresenter.GetCustomer();
 
             _view.BudgetModifyRadio = true;
             _view.AmountText = "50";  // 1. Transact
             _view.DatePick = DateTime.Today.ToString();
-            _present.InsertTransaction();
+            _accountsPresenter.InsertTransaction();
 
             _view.AmountText = "-100"; // 2. Transact
-            _present.InsertTransaction();
+            _accountsPresenter.InsertTransaction();
 
-            _present.LogOut(); // log out
+            _customerPresenter.LogOut(); // log out
 
             Trace.WriteLine(_view.BudgetList);
 
@@ -248,11 +250,11 @@ namespace ShowCustomersTest
             Assert.AreEqual(totallogOutExpected, totallogOutActual);
 
             _view.CPRText = "1111111111";
-            _present.GetCustomer(); // log in
+            _customerPresenter.GetCustomer(); // log in
 
             Trace.WriteLine(_view.BudgetList);
 
-            string dateExpected = "27-04-2018 00:00:00"; // Verify Transactions
+            string dateExpected = "28-04-2018 00:00:00"; // Verify Transactions
             string dateActual = _view.BudgetList.Skip(1).FirstOrDefault()[0];
 
             string amountExpected = "-100.00";

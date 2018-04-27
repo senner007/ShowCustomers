@@ -1,12 +1,33 @@
 ﻿using System;
 using ShowCustomers.Models;
+using ShowCustomers.Views;
+
 namespace ShowCustomers.Presenter
 {
-    public class AccountsPresenter : BankPresenter 
+    public class AccountsPresenter
     {
-        public void GetTransactions()
+        private IAccounts _view;
+        private CustomerPresenter _customerPresenter;
+        private ManageAccounts _manage = new ManageAccounts();
+        private Determine determine = new Determine();
+        public AccountsPresenter(IAccounts view, CustomerPresenter customerPresenter)
+        {
+            Console.WriteLine("CustomerPresenter Constructor");
+            _view = view;
+            _customerPresenter = customerPresenter;  
+
+            _view.OnCreateAccount += CreateAccount;
+            _view.OnInsert += InsertTransaction;
+            _customerPresenter.CallGetTransactions += GetTransactions;
+            _customerPresenter.CallShowAccounts += ShowAccounts;
+            _customerPresenter.CallClearAccounts += ClearAccounts;
+
+        }
+
+        private void GetTransactions()
         {
             Console.WriteLine("Get Transactions");
+            long _loginCPR = _customerPresenter._loginCPR;
 
             _view.BudgetList = _manage.TransactionsToArray(_manage.GetBudgetAccount(_loginCPR));
 
@@ -15,6 +36,7 @@ namespace ShowCustomers.Presenter
         }
         private bool _Insert()
         {
+            long _loginCPR = _customerPresenter._loginCPR;
             if (!determine.IfDec(_view.AmountText)) return false;
             if (_view.BudgetModifyRadio)
             {
@@ -39,6 +61,7 @@ namespace ShowCustomers.Presenter
         }
         private bool _Create()
         {
+            long _loginCPR = _customerPresenter._loginCPR;
             if (_loginCPR == 0 || (!_view.CurrentCreateRadio && !_view.BudgetCreateRadio)) return false;
             return _view.BudgetCreateRadio ? _manage.BudgetCreate(_loginCPR) : _manage.CurrentCreate(_loginCPR);
         }
@@ -47,14 +70,14 @@ namespace ShowCustomers.Presenter
      
         public void InsertTransaction() => ShowAccounts(_Insert(), "Transaktion gennemført", "Transaktion ikke gennemført");         
 
-        public void ShowAccounts(bool show, string message = "", string fail = "")
+        private void ShowAccounts(bool show, string message = "", string fail = "")
         {
             if (!show)
             {
                 _view.AccountStatusText = fail;
                 return;
             }
-            
+            long _loginCPR = _customerPresenter._loginCPR;
             _view.AccountStatusText = message;
             
             Account budget = _manage.GetBudgetAccount(_loginCPR);
@@ -65,7 +88,14 @@ namespace ShowCustomers.Presenter
 
             _view.BudgetTotal = budget?.Total.Decimals2();
             _view.CurrentTotal = current?.Total.Decimals2();
-        }     
+        }
+        
+        private void ClearAccounts()
+        {
+            _view.AmountText = "";
+            _view.BudgetList = null; // fjern transaktioner
+            _view.CurrentList = null;
+        }
     }
     
     

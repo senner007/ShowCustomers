@@ -1,5 +1,5 @@
 ﻿using System;
-using ShowCustomers.View;
+using ShowCustomers.Views;
 using ShowCustomers.Presenter;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
@@ -8,15 +8,19 @@ using System.Linq;
 
 namespace ShowCustomers
 {
-    public partial class Form1 : Form, IBank
+    public partial class Form1 : Form, ICustomer, IAccounts
     {
-        BankPresenter presenter; // presenter field
+        CustomerPresenter customerpresenter; // presenter field
+        AccountsPresenter accountspresenter;
 
         public Form1()
         {
             InitializeComponent();
             AllocConsole();  // Console output
-            presenter = new InitPresenter(this); // instantiate presenter
+            customerpresenter = new CustomerPresenter(this); // instantiate presenter
+            accountspresenter = new AccountsPresenter(this, customerpresenter);
+
+
         }
 
         [DllImport("kernel32.dll", SetLastError = true)] // Console output

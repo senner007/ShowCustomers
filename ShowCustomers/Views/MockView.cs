@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ShowCustomers.View  
+namespace ShowCustomers.Views  
 {
-    public class MockView : IBank
+    public class MockView : ICustomer, IAccounts
     {
         public string DisplayUser { get;  set; }
         public string CurrentAccount { get; set; }
