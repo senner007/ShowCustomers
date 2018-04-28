@@ -13,7 +13,7 @@ namespace ShowCustomers.Presenter
         public event Action CallClearAccounts;
         public event EventWithArgs CallShowAccounts;
         public long LoginCPR { get; private set; } = 0;
-        private ManageAccounts _manage = new ManageAccounts();
+        ManageAccounts _manage = new ManageAccounts();
 
         public CustomerPresenter(ICustomer view)
         {
@@ -26,7 +26,7 @@ namespace ShowCustomers.Presenter
            
         }
 
-        private void CreateUpdateCustomer() 
+        void CreateUpdateCustomer() 
         {          
             if (!determine.IfValidUser(_view.NameText, _view.CPRText, _view.AddressText)) return;
 
@@ -48,7 +48,7 @@ namespace ShowCustomers.Presenter
             }
         }
 
-        private void GetCustomer()
+        void GetCustomer()
         {
             // return hvis både navn og cpr er indtastet
             if (_view.CPRText != "" && _view.NameText != "") return;
@@ -67,7 +67,7 @@ namespace ShowCustomers.Presenter
                     "Navn ikke fundet");
             }             
         }
-        private void DisplayCustomer(Customer customer, string message, string fail)
+        void DisplayCustomer(Customer customer, string message, string fail)
         { 
             ClearLabel(); // slet alle tekstfelter og tekstlabels og listviews
             CallClearAccounts(); // call ClearAccounts from accounts presenter
@@ -76,7 +76,7 @@ namespace ShowCustomers.Presenter
             CallShowAccounts(true, "", ""); //  Call ShowAccounts from accounts presenter
             CallGetTransactions();   // call GetTransactions from accounts presenter                 
         }
-        private void LogOut()
+        void LogOut()
         {        
             DisplayCustomer(null, "", "Indtast enten navn eller CPR.");
         }

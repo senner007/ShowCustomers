@@ -6,10 +6,10 @@ namespace ShowCustomers.Presenter
 {
     public class AccountsPresenter
     {
-        private IAccounts _view;
-        private CustomerPresenter _customerPresenter;
-        private ManageAccounts _manage = new ManageAccounts();
-        private Determine determine = new Determine();
+        IAccounts _view;
+        CustomerPresenter _customerPresenter;
+        ManageAccounts _manage = new ManageAccounts();
+        Determine determine = new Determine();
 
         public AccountsPresenter(IAccounts view, CustomerPresenter customerPresenter)
         {
@@ -23,9 +23,10 @@ namespace ShowCustomers.Presenter
             _customerPresenter.CallShowAccounts += ShowAccounts;
             _customerPresenter.CallClearAccounts += ClearAccounts;
 
+
         }
 
-        private void GetTransactions()
+        void GetTransactions()
         {
             Console.WriteLine("Get Transactions");
             long _loginCPR = _customerPresenter.LoginCPR;
@@ -35,7 +36,7 @@ namespace ShowCustomers.Presenter
             _view.CurrentList = _manage.TransactionsToArray(_manage.GetCurrentAccount(_loginCPR));
 
         }
-        private bool _Insert()
+        bool _Insert()
         {
             long _loginCPR = _customerPresenter.LoginCPR;
             if (!determine.IfDec(_view.AmountText)) return false;
@@ -60,18 +61,18 @@ namespace ShowCustomers.Presenter
         return false;
 
         }
-        private bool _Create()
+        bool _Create()
         {
             long _loginCPR = _customerPresenter.LoginCPR;
             if (_loginCPR == 0 || (!_view.CurrentCreateRadio && !_view.BudgetCreateRadio)) return false;
             return _view.BudgetCreateRadio ? _manage.BudgetCreate(_loginCPR) : _manage.CurrentCreate(_loginCPR);
         }
 
-        private void CreateAccount() => ShowAccounts(_Create() , "Konto oprettet", "Konto ikke oprettet");
+        void CreateAccount() => ShowAccounts(_Create() , "Konto oprettet", "Konto ikke oprettet");
      
-        private void InsertTransaction() => ShowAccounts(_Insert(), "Transaktion gennemført", "Transaktion ikke gennemført");         
+        void InsertTransaction() => ShowAccounts(_Insert(), "Transaktion gennemført", "Transaktion ikke gennemført");         
 
-        private void ShowAccounts(bool show, string message = "", string fail = "")
+        void ShowAccounts(bool show, string message = "", string fail = "")
         {
             if (!show)
             {
@@ -91,7 +92,7 @@ namespace ShowCustomers.Presenter
             _view.CurrentTotal = current?.Total.Decimals2();
         }
         
-        private void ClearAccounts()
+        void ClearAccounts()
         {
             _view.AmountText = "";
             _view.BudgetList = null; // fjern transaktioner
