@@ -24,7 +24,7 @@ namespace ShowCustomers.Presenter
            
         }
 
-        public void CreateUpdateCustomer() 
+        private void CreateUpdateCustomer() 
         {          
             if (!determine.IfValidUser(_view.NameText, _view.CPRText, _view.AddressText)) return;
 
@@ -46,7 +46,7 @@ namespace ShowCustomers.Presenter
             }
         }
 
-        public void GetCustomer()
+        private void GetCustomer()
         {
             // return hvis både navn og cpr er indtastet
             if (_view.CPRText != "" && _view.NameText != "") return;
@@ -68,13 +68,13 @@ namespace ShowCustomers.Presenter
         private void DisplayCustomer(Customer customer, string message, string fail)
         { 
             ClearLabel(); // slet alle tekstfelter og tekstlabels og listviews
-            CallClearAccounts();
+            CallClearAccounts(); // call ClearAccounts from accounts presenter
             _loginCPR = customer != null ? customer.CPR : 0; // sæt login. 0 hvis ikke indlæst
             _view.DisplayUser = customer != null ? customer.NickName + " " + message : fail + " Ikke indlæst"; // Vis meddelelse
-            CallShowAccounts(true, "", "");
-            CallGetTransactions();                    
+            CallShowAccounts(true, "", ""); //  Call ShowAccounts from accounts presenter
+            CallGetTransactions();   // call GetTransactions from accounts presenter                 
         }
-        public void LogOut()
+        private void LogOut()
         {        
             DisplayCustomer(null, "", "Indtast enten navn eller CPR.");
         }

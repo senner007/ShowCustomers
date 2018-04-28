@@ -10,6 +10,7 @@ namespace ShowCustomers.Presenter
         private CustomerPresenter _customerPresenter;
         private ManageAccounts _manage = new ManageAccounts();
         private Determine determine = new Determine();
+
         public AccountsPresenter(IAccounts view, CustomerPresenter customerPresenter)
         {
             Console.WriteLine("AccountsPresenter Constructor");
