@@ -68,9 +68,9 @@ namespace ShowCustomers.Presenter
             return _view.BudgetCreateRadio ? _manage.BudgetCreate(_loginCPR) : _manage.CurrentCreate(_loginCPR);
         }
 
-        void CreateAccount() => ShowAccounts(_Create() , "Konto oprettet", "Konto ikke oprettet");
+        void CreateAccount() => ShowAccounts(_Create() , "Account opened", "Open account failure");
      
-        void InsertTransaction() => ShowAccounts(_Insert(), "Transaktion gennemført", "Transaktion ikke gennemført");         
+        void InsertTransaction() => ShowAccounts(_Insert(), "Transaction completed", "Invalid transaction");         
 
         void ShowAccounts(bool show, string message = "", string fail = "")
         {

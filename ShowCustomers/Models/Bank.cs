@@ -19,8 +19,8 @@ namespace ShowCustomers.Models
                 };
 
             _customers = new List<Customer>() {
-                    new Customer { CPR =  1111111111 , Name = "Smart001", Address = "Road 1", NickName = "111111Bruger"},
-                    new Customer { CPR =  2222222222 , Name = "Smart002", Address = "Road 2", NickName = "222222Bruger"}
+                    new Customer { CPR =  1111111111 , Name = "Smart001", Address = "Road 1", NickName = "111111User"},
+                    new Customer { CPR =  2222222222 , Name = "Smart002", Address = "Road 2", NickName = "222222User"}
                 };
         }
    

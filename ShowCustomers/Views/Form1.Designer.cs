@@ -41,6 +41,7 @@
             this.Value = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Total = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpAccounts = new System.Windows.Forms.GroupBox();
+            this.labelAccountSatus = new System.Windows.Forms.Label();
             this.grpDebitCredit = new System.Windows.Forms.GroupBox();
             this.buttonInsert = new System.Windows.Forms.Button();
             this.radioBudgetAccountModify = new System.Windows.Forms.RadioButton();
@@ -71,7 +72,6 @@
             this.labelName = new System.Windows.Forms.Label();
             this.labelNameOrCPR = new System.Windows.Forms.Label();
             this.buttonUpdateCustomer = new System.Windows.Forms.Button();
-            this.labelAccountSatus = new System.Windows.Forms.Label();
             this.groupBoxEngagement.SuspendLayout();
             this.grpAccounts.SuspendLayout();
             this.grpDebitCredit.SuspendLayout();
@@ -84,7 +84,7 @@
             this.buttonGetCustomer.Name = "buttonGetCustomer";
             this.buttonGetCustomer.Size = new System.Drawing.Size(85, 26);
             this.buttonGetCustomer.TabIndex = 0;
-            this.buttonGetCustomer.Text = "Hent";
+            this.buttonGetCustomer.Text = "Load";
             this.buttonGetCustomer.UseVisualStyleBackColor = true;
             this.buttonGetCustomer.Click += new System.EventHandler(this.buttonGetCustomer_Click);
             // 
@@ -108,18 +108,18 @@
             this.labelBudgetAccountList.AutoSize = true;
             this.labelBudgetAccountList.Location = new System.Drawing.Point(804, 16);
             this.labelBudgetAccountList.Name = "labelBudgetAccountList";
-            this.labelBudgetAccountList.Size = new System.Drawing.Size(71, 13);
+            this.labelBudgetAccountList.Size = new System.Drawing.Size(83, 13);
             this.labelBudgetAccountList.TabIndex = 6;
-            this.labelBudgetAccountList.Text = "Budget konto";
+            this.labelBudgetAccountList.Text = "Budget account";
             // 
             // labelCurrentAccountList
             // 
             this.labelCurrentAccountList.AutoSize = true;
             this.labelCurrentAccountList.Location = new System.Drawing.Point(539, 16);
             this.labelCurrentAccountList.Name = "labelCurrentAccountList";
-            this.labelCurrentAccountList.Size = new System.Drawing.Size(52, 13);
+            this.labelCurrentAccountList.Size = new System.Drawing.Size(84, 13);
             this.labelCurrentAccountList.TabIndex = 5;
-            this.labelCurrentAccountList.Text = "Lønkonto";
+            this.labelCurrentAccountList.Text = "Current Account";
             // 
             // listCurrent
             // 
@@ -141,8 +141,8 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Beløb";
-            this.columnHeader2.Width = 40;
+            this.columnHeader2.Text = "Amount";
+            this.columnHeader2.Width = 70;
             // 
             // columnHeader3
             // 
@@ -166,17 +166,16 @@
             // Date
             // 
             this.Date.Text = "Date";
-            this.Date.Width = 30;
+            this.Date.Width = 50;
             // 
             // Value
             // 
-            this.Value.Text = "Beløb";
-            this.Value.Width = 30;
+            this.Value.Text = "Amount";
+            this.Value.Width = 70;
             // 
             // Total
             // 
             this.Total.Text = "Total";
-            this.Total.Width = 40;
             // 
             // grpAccounts
             // 
@@ -193,7 +192,16 @@
             this.grpAccounts.Size = new System.Drawing.Size(400, 244);
             this.grpAccounts.TabIndex = 2;
             this.grpAccounts.TabStop = false;
-            this.grpAccounts.Text = "Konti";
+            this.grpAccounts.Text = "Accounts";
+            // 
+            // labelAccountSatus
+            // 
+            this.labelAccountSatus.AutoSize = true;
+            this.labelAccountSatus.Location = new System.Drawing.Point(113, 16);
+            this.labelAccountSatus.Name = "labelAccountSatus";
+            this.labelAccountSatus.Size = new System.Drawing.Size(81, 13);
+            this.labelAccountSatus.TabIndex = 7;
+            this.labelAccountSatus.Text = "Account status:";
             // 
             // grpDebitCredit
             // 
@@ -207,10 +215,10 @@
             this.grpDebitCredit.Location = new System.Drawing.Point(29, 99);
             this.grpDebitCredit.Margin = new System.Windows.Forms.Padding(1, 3, 3, 3);
             this.grpDebitCredit.Name = "grpDebitCredit";
-            this.grpDebitCredit.Size = new System.Drawing.Size(284, 118);
+            this.grpDebitCredit.Size = new System.Drawing.Size(298, 118);
             this.grpDebitCredit.TabIndex = 6;
             this.grpDebitCredit.TabStop = false;
-            this.grpDebitCredit.Text = "Debit/Kredit";
+            this.grpDebitCredit.Text = "Debit/Credit";
             // 
             // buttonInsert
             // 
@@ -218,7 +226,7 @@
             this.buttonInsert.Name = "buttonInsert";
             this.buttonInsert.Size = new System.Drawing.Size(93, 27);
             this.buttonInsert.TabIndex = 6;
-            this.buttonInsert.Text = "Indsæt";
+            this.buttonInsert.Text = "Transact";
             this.buttonInsert.UseVisualStyleBackColor = true;
             this.buttonInsert.Click += new System.EventHandler(this.buttonInsert_Click);
             // 
@@ -227,10 +235,10 @@
             this.radioBudgetAccountModify.AutoSize = true;
             this.radioBudgetAccountModify.Location = new System.Drawing.Point(184, 53);
             this.radioBudgetAccountModify.Name = "radioBudgetAccountModify";
-            this.radioBudgetAccountModify.Size = new System.Drawing.Size(86, 17);
+            this.radioBudgetAccountModify.Size = new System.Drawing.Size(102, 17);
             this.radioBudgetAccountModify.TabIndex = 5;
             this.radioBudgetAccountModify.TabStop = true;
-            this.radioBudgetAccountModify.Text = "Budgetkonto";
+            this.radioBudgetAccountModify.Text = "Budget Account";
             this.radioBudgetAccountModify.UseVisualStyleBackColor = true;
             // 
             // radioCurrentAccountModify
@@ -238,10 +246,10 @@
             this.radioCurrentAccountModify.AutoSize = true;
             this.radioCurrentAccountModify.Location = new System.Drawing.Point(185, 26);
             this.radioCurrentAccountModify.Name = "radioCurrentAccountModify";
-            this.radioCurrentAccountModify.Size = new System.Drawing.Size(70, 17);
+            this.radioCurrentAccountModify.Size = new System.Drawing.Size(102, 17);
             this.radioCurrentAccountModify.TabIndex = 4;
             this.radioCurrentAccountModify.TabStop = true;
-            this.radioCurrentAccountModify.Text = "Lønkonto";
+            this.radioCurrentAccountModify.Text = "Current Account";
             this.radioCurrentAccountModify.UseVisualStyleBackColor = true;
             // 
             // dateTimePicker
@@ -266,16 +274,16 @@
             this.labelDate.Name = "labelDate";
             this.labelDate.Size = new System.Drawing.Size(33, 13);
             this.labelDate.TabIndex = 1;
-            this.labelDate.Text = "Dato:";
+            this.labelDate.Text = "Date:";
             // 
             // labelAmount
             // 
             this.labelAmount.AutoSize = true;
             this.labelAmount.Location = new System.Drawing.Point(17, 26);
             this.labelAmount.Name = "labelAmount";
-            this.labelAmount.Size = new System.Drawing.Size(37, 13);
+            this.labelAmount.Size = new System.Drawing.Size(46, 13);
             this.labelAmount.TabIndex = 0;
-            this.labelAmount.Text = "Beløb:";
+            this.labelAmount.Text = "Amount:";
             // 
             // labelBudgetAccountTotal
             // 
@@ -316,18 +324,18 @@
             this.labelBudgetAccount.AutoSize = true;
             this.labelBudgetAccount.Location = new System.Drawing.Point(26, 68);
             this.labelBudgetAccount.Name = "labelBudgetAccount";
-            this.labelBudgetAccount.Size = new System.Drawing.Size(71, 13);
+            this.labelBudgetAccount.Size = new System.Drawing.Size(86, 13);
             this.labelBudgetAccount.TabIndex = 1;
-            this.labelBudgetAccount.Text = "Budgetkonto:";
+            this.labelBudgetAccount.Text = "Budget account:";
             // 
             // labelCurrentAccount
             // 
             this.labelCurrentAccount.AutoSize = true;
             this.labelCurrentAccount.Location = new System.Drawing.Point(26, 41);
             this.labelCurrentAccount.Name = "labelCurrentAccount";
-            this.labelCurrentAccount.Size = new System.Drawing.Size(55, 13);
+            this.labelCurrentAccount.Size = new System.Drawing.Size(87, 13);
             this.labelCurrentAccount.TabIndex = 0;
-            this.labelCurrentAccount.Text = "Lønkonto:";
+            this.labelCurrentAccount.Text = "Current Account:";
             // 
             // grpCustomer
             // 
@@ -352,7 +360,7 @@
             this.grpCustomer.Size = new System.Drawing.Size(400, 253);
             this.grpCustomer.TabIndex = 1;
             this.grpCustomer.TabStop = false;
-            this.grpCustomer.Text = "Kunde";
+            this.grpCustomer.Text = "Customer";
             // 
             // buttonLogOut
             // 
@@ -360,7 +368,7 @@
             this.buttonLogOut.Name = "buttonLogOut";
             this.buttonLogOut.Size = new System.Drawing.Size(84, 26);
             this.buttonLogOut.TabIndex = 15;
-            this.buttonLogOut.Text = "Log ud";
+            this.buttonLogOut.Text = "Log out";
             this.buttonLogOut.UseVisualStyleBackColor = true;
             this.buttonLogOut.Click += new System.EventHandler(this.buttonLogOut_Click);
             // 
@@ -369,10 +377,10 @@
             this.radioBudgetAccount.AutoSize = true;
             this.radioBudgetAccount.Location = new System.Drawing.Point(169, 214);
             this.radioBudgetAccount.Name = "radioBudgetAccount";
-            this.radioBudgetAccount.Size = new System.Drawing.Size(86, 17);
+            this.radioBudgetAccount.Size = new System.Drawing.Size(101, 17);
             this.radioBudgetAccount.TabIndex = 14;
             this.radioBudgetAccount.TabStop = true;
-            this.radioBudgetAccount.Text = "Budgetkonto";
+            this.radioBudgetAccount.Text = "Budget account";
             this.radioBudgetAccount.UseVisualStyleBackColor = true;
             // 
             // radioCurrentAccount
@@ -380,10 +388,10 @@
             this.radioCurrentAccount.AutoSize = true;
             this.radioCurrentAccount.Location = new System.Drawing.Point(169, 191);
             this.radioCurrentAccount.Name = "radioCurrentAccount";
-            this.radioCurrentAccount.Size = new System.Drawing.Size(70, 17);
+            this.radioCurrentAccount.Size = new System.Drawing.Size(101, 17);
             this.radioCurrentAccount.TabIndex = 13;
             this.radioCurrentAccount.TabStop = true;
-            this.radioCurrentAccount.Text = "Lønkonto";
+            this.radioCurrentAccount.Text = "Current account";
             this.radioCurrentAccount.UseVisualStyleBackColor = true;
             // 
             // buttonCreateAccount
@@ -392,7 +400,7 @@
             this.buttonCreateAccount.Name = "buttonCreateAccount";
             this.buttonCreateAccount.Size = new System.Drawing.Size(85, 26);
             this.buttonCreateAccount.TabIndex = 12;
-            this.buttonCreateAccount.Text = "Opret konto";
+            this.buttonCreateAccount.Text = "Open account";
             this.buttonCreateAccount.UseVisualStyleBackColor = true;
             this.buttonCreateAccount.Click += new System.EventHandler(this.buttonCreateAccount_Click);
             // 
@@ -403,31 +411,31 @@
             this.error_Address.Location = new System.Drawing.Point(253, 114);
             this.error_Address.MaximumSize = new System.Drawing.Size(140, 0);
             this.error_Address.Name = "error_Address";
-            this.error_Address.Size = new System.Drawing.Size(80, 13);
+            this.error_Address.Size = new System.Drawing.Size(74, 13);
             this.error_Address.TabIndex = 11;
-            this.error_Address.Text = "Indtast Adresse";
+            this.error_Address.Text = "Insert Address";
             // 
             // error_CPR
             // 
             this.error_CPR.AutoSize = true;
             this.error_CPR.ForeColor = System.Drawing.Color.Black;
-            this.error_CPR.Location = new System.Drawing.Point(253, 86);
+            this.error_CPR.Location = new System.Drawing.Point(253, 89);
             this.error_CPR.MaximumSize = new System.Drawing.Size(120, 0);
             this.error_CPR.Name = "error_CPR";
-            this.error_CPR.Size = new System.Drawing.Size(104, 13);
+            this.error_CPR.Size = new System.Drawing.Size(58, 13);
             this.error_CPR.TabIndex = 10;
-            this.error_CPR.Text = "Indtast CPR-nummer";
+            this.error_CPR.Text = "Insert CPR";
             // 
             // error_Name
             // 
             this.error_Name.AutoSize = true;
             this.error_Name.ForeColor = System.Drawing.Color.Black;
-            this.error_Name.Location = new System.Drawing.Point(253, 25);
+            this.error_Name.Location = new System.Drawing.Point(253, 21);
             this.error_Name.MaximumSize = new System.Drawing.Size(140, 0);
             this.error_Name.Name = "error_Name";
-            this.error_Name.Size = new System.Drawing.Size(68, 13);
+            this.error_Name.Size = new System.Drawing.Size(64, 13);
             this.error_Name.TabIndex = 9;
-            this.error_Name.Text = "Indtast Navn";
+            this.error_Name.Text = "Insert Name";
             // 
             // txtAddress
             // 
@@ -463,25 +471,25 @@
             this.labelAddress.Name = "labelAddress";
             this.labelAddress.Size = new System.Drawing.Size(48, 13);
             this.labelAddress.TabIndex = 5;
-            this.labelAddress.Text = "Adresse:";
+            this.labelAddress.Text = "Address:";
             // 
             // labelCPR
             // 
             this.labelCPR.AutoSize = true;
             this.labelCPR.Location = new System.Drawing.Point(7, 86);
             this.labelCPR.Name = "labelCPR";
-            this.labelCPR.Size = new System.Drawing.Size(46, 13);
+            this.labelCPR.Size = new System.Drawing.Size(32, 13);
             this.labelCPR.TabIndex = 4;
-            this.labelCPR.Text = "CPR Nr.";
+            this.labelCPR.Text = "CPR:";
             // 
             // labelName
             // 
             this.labelName.AutoSize = true;
             this.labelName.Location = new System.Drawing.Point(7, 63);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(36, 13);
+            this.labelName.Size = new System.Drawing.Size(38, 13);
             this.labelName.TabIndex = 3;
-            this.labelName.Text = "Navn:";
+            this.labelName.Text = "Name:";
             // 
             // labelNameOrCPR
             // 
@@ -490,9 +498,9 @@
             this.labelNameOrCPR.Location = new System.Drawing.Point(7, 21);
             this.labelNameOrCPR.MaximumSize = new System.Drawing.Size(250, 0);
             this.labelNameOrCPR.Name = "labelNameOrCPR";
-            this.labelNameOrCPR.Size = new System.Drawing.Size(136, 13);
+            this.labelNameOrCPR.Size = new System.Drawing.Size(128, 13);
             this.labelNameOrCPR.TabIndex = 2;
-            this.labelNameOrCPR.Text = "Indtast enten cpr eller navn";
+            this.labelNameOrCPR.Text = "Insert either name or CPR";
             // 
             // buttonUpdateCustomer
             // 
@@ -500,18 +508,9 @@
             this.buttonUpdateCustomer.Name = "buttonUpdateCustomer";
             this.buttonUpdateCustomer.Size = new System.Drawing.Size(87, 26);
             this.buttonUpdateCustomer.TabIndex = 1;
-            this.buttonUpdateCustomer.Text = "Opret/Opdater";
+            this.buttonUpdateCustomer.Text = "Create/Update";
             this.buttonUpdateCustomer.UseVisualStyleBackColor = true;
             this.buttonUpdateCustomer.Click += new System.EventHandler(this.buttonUpdateCustomer_Click);
-            // 
-            // labelAccountSatus
-            // 
-            this.labelAccountSatus.AutoSize = true;
-            this.labelAccountSatus.Location = new System.Drawing.Point(113, 16);
-            this.labelAccountSatus.Name = "labelAccountSatus";
-            this.labelAccountSatus.Size = new System.Drawing.Size(69, 13);
-            this.labelAccountSatus.TabIndex = 7;
-            this.labelAccountSatus.Text = "Konto status:";
             // 
             // Form1
             // 

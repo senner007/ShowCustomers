@@ -11,10 +11,10 @@ namespace ShowCustomers.Presenter
 
         protected void ShowLabel()
         {
-            _view.error_NameText = determine.IfName(_view.NameText) ? "" : "Brugernavn skal indeholde 1 tal, et stort bogstav, ingen mellemrum og bestå af 8-15 tegn";
+            _view.error_NameText = determine.IfName(_view.NameText) ? "" : "Name cannot contain white spaces, must contain at least 1 number, 1 capital letter, and length of 8-15 characters";
             //https://stackoverflow.com/questions/21034258/password-validation-regex-to-disallow-whitespaces
-            _view.error_CPRText = determine.IfCPR(_view.CPRText) ? "" : "Indtast CPR med 10 cifre";
-            _view.error_AddressText = determine.IfAddress(_view.AddressText) ? "" : "Adresse skal starte med et bogstav, indeholde et mellemrum og mindst 1 tal";
+            _view.error_CPRText = determine.IfCPR(_view.CPRText) ? "" : "Type valid 10 digit CPR";
+            _view.error_AddressText = determine.IfAddress(_view.AddressText) ? "" : "Address is to begin with a letter, must contain white space, must contain 1 number";
         }
         protected void ClearLabel()
         {

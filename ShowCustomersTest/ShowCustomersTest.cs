@@ -112,7 +112,7 @@ namespace ShowCustomersTest
             Assert.AreEqual(expected, actual);
 
             // view test
-            string expected_feedback = "444444Bruger er oprettet. Bruger indlæst";
+            string expected_feedback = "444444User created. User logged in";
             Assert.AreEqual(expected_feedback, _view.DisplayUser);
 
         }
@@ -126,7 +126,7 @@ namespace ShowCustomersTest
 
             _view.buttonAddUpdateCustomer();
 
-            string expected = "555555Bruger er oprettet. Bruger indlæst";
+            string expected = "555555User created. User logged in";
             string actual = _view.DisplayUser;
 
             Assert.AreEqual(expected, actual);

@@ -26,7 +26,7 @@ namespace ShowCustomers.Models
             if (FindCustomer(cpr) == null && FindByName(name) == null)
             {
                 Console.WriteLine("MODEL : Customer created");
-                Customer customer = new Customer { CPR = cpr, Name = name, Address = address, NickName = cpr.ToString().Substring(0, 6) + "Bruger" };
+                Customer customer = new Customer { CPR = cpr, Name = name, Address = address, NickName = cpr.ToString().Substring(0, 6) + "User" };
                 _customers.Add(customer);
                 return customer;
             }

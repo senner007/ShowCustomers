@@ -32,53 +32,53 @@ namespace ShowCustomers.Presenter
 
             long cpr = Convert.ToInt64(_view.CPRText);
             // Update customer
-            if (LoginCPR != 0 && cpr == LoginCPR) // opdater bruger kræver bruger indlæst og at indtastet cpr er lig brugers
+            if (LoginCPR != 0 && cpr == LoginCPR) // updating as user requires user logged in and typed CPR is correct
             {
                     DisplayCustomer(_manage.UpdateCustomer(LoginCPR, _view.NameText, _view.AddressText), 
-                        "Navn og adresse opdateret. Bruger er indlæst",  
-                        "Adresse opdateret. Navn ikke opdateret. Navn findes i forvejen.");
+                        "Name and address updated. User logged in",  
+                        "Address updated. Name not updated, Name already exists.");
 
             }
             // Create Customer
-            else if (LoginCPR == 0) // opret bruger kræver, at der er logged ud
+            else if (LoginCPR == 0) // creating a custumer requires that no user is logged in
             {
                     DisplayCustomer(_manage.CreateCustomer(cpr, _view.NameText, _view.AddressText), 
-                        "er oprettet. Bruger indlæst",  
-                        "Ikke oprettet. Navn eller CPR findes i forvejen");
+                        "created. User logged in",  
+                        "User not Created. Name or CPR already exists");
             }
         }
 
         void GetCustomer()
         {
-            // return hvis både navn og cpr er indtastet
+            // only permit log in by either user name or CPR 
             if (_view.CPRText != "" && _view.NameText != "") return;
             
-            // Indlæs ved cpr
+            // Get user by CPR (personal identity)
             if (determine.IfCPR(_view.CPRText))
             {
                 DisplayCustomer(_manage.FindCustomer(Convert.ToInt64(_view.CPRText)), 
-                    "er indlæst ved CPR", 
-                    "CPR ikke fundet");
-            } //Indlæs ved navn              
+                    "is logged in by CPR", 
+                    "CPR not found");
+            } //Get user by name          
             else if (determine.IfName(_view.NameText))
             {
                 DisplayCustomer(_manage.FindByName(_view.NameText), 
-                    "er indlæst ved navn", 
-                    "Navn ikke fundet");
+                    "is logged in by name", 
+                    "Name not found");
             }             
         }
         void DisplayCustomer(Customer customer, string message, string fail)
         { 
-            ClearLabel(); // slet alle tekstfelter og tekstlabels og listviews
+            ClearLabel(); // clear user related textboxes and labels
             CallClearAccounts(); // call ClearAccounts from accounts presenter
-            LoginCPR = customer != null ? customer.CPR : 0; // sæt login. 0 hvis ikke indlæst
-            _view.DisplayUser = customer != null ? customer.NickName + " " + message : fail + " Ikke indlæst"; // Vis meddelelse
+            LoginCPR = customer != null ? customer.CPR : 0; // set login status. 0 if user not logged in.
+            _view.DisplayUser = customer != null ? customer.NickName + " " + message : fail + " not logged out"; // Show message
             CallShowAccounts(true, "", ""); //  Call ShowAccounts from accounts presenter
             CallGetTransactions();   // call GetTransactions from accounts presenter                 
         }
         void LogOut()
         {        
-            DisplayCustomer(null, "", "Indtast enten navn eller CPR.");
+            DisplayCustomer(null, "", "Insert either name or CPR");
         }
     }
 }
