@@ -11,6 +11,7 @@ namespace ShowCustomers.Models
 
         static Bank() // static constructor
         {
+            Console.WriteLine("Bank static contructor");
             _currentAccounts = new List<Account>() {  
                     new Account { CPR =  1111111111 , DateInit = "01-08-2018", AccountNumber = 123, Total = 100, Transactions = new List<Transaction>()}
                 };

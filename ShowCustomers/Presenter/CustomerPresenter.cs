@@ -72,7 +72,7 @@ namespace ShowCustomers.Presenter
             ClearLabel(); // clear user related textboxes and labels
             CallClearAccounts(); // call ClearAccounts from accounts presenter
             LoginCPR = customer != null ? customer.CPR : 0; // set login status. 0 if user not logged in.
-            _view.DisplayUser = customer != null ? customer.NickName + " " + message : fail + " not logged out"; // Show message
+            _view.DisplayUser = customer != null ? customer.NickName + " " + message : fail + " - logged out"; // Show message
             CallShowAccounts(true, "", ""); //  Call ShowAccounts from accounts presenter
             CallGetTransactions();   // call GetTransactions from accounts presenter                 
         }
