@@ -28,7 +28,7 @@ namespace ShowCustomers.Presenter
         private void GetTransactions()
         {
             Console.WriteLine("Get Transactions");
-            long _loginCPR = _customerPresenter._loginCPR;
+            long _loginCPR = _customerPresenter.LoginCPR;
 
             _view.BudgetList = _manage.TransactionsToArray(_manage.GetBudgetAccount(_loginCPR));
 
@@ -37,7 +37,7 @@ namespace ShowCustomers.Presenter
         }
         private bool _Insert()
         {
-            long _loginCPR = _customerPresenter._loginCPR;
+            long _loginCPR = _customerPresenter.LoginCPR;
             if (!determine.IfDec(_view.AmountText)) return false;
             if (_view.BudgetModifyRadio)
             {
@@ -62,7 +62,7 @@ namespace ShowCustomers.Presenter
         }
         private bool _Create()
         {
-            long _loginCPR = _customerPresenter._loginCPR;
+            long _loginCPR = _customerPresenter.LoginCPR;
             if (_loginCPR == 0 || (!_view.CurrentCreateRadio && !_view.BudgetCreateRadio)) return false;
             return _view.BudgetCreateRadio ? _manage.BudgetCreate(_loginCPR) : _manage.CurrentCreate(_loginCPR);
         }
@@ -78,7 +78,7 @@ namespace ShowCustomers.Presenter
                 _view.AccountStatusText = fail;
                 return;
             }
-            long _loginCPR = _customerPresenter._loginCPR;
+            long _loginCPR = _customerPresenter.LoginCPR;
             _view.AccountStatusText = message;
             
             Account budget = _manage.GetBudgetAccount(_loginCPR);

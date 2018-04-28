@@ -20,7 +20,6 @@ namespace ShowCustomers
             customerpresenter = new CustomerPresenter(this); // instantiate presenter
             accountspresenter = new AccountsPresenter(this, customerpresenter);
 
-
         }
 
         [DllImport("kernel32.dll", SetLastError = true)] // Console output
