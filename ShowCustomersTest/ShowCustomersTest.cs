@@ -20,9 +20,9 @@ namespace ShowCustomersTest
         * 
         */
         private ManageAccounts _manage;
-        private MockView _view;
-        private CustomerPresenter _customerPresenter;
-        private AccountsPresenter _accountsPresenter;
+        public MockView _view;
+        public CustomerPresenter _customerPresenter;
+        public AccountsPresenter _accountsPresenter;
 
         [TestInitialize()]
         public void TestInitialize() // executes once before each test run https://stackoverflow.com/questions/13943078/c-sharp-unit-test-with-common-code-repeated
@@ -103,7 +103,7 @@ namespace ShowCustomersTest
             _view.NameText = "Smart004";
             _view.CPRText = "4444444444";
             _view.AddressText = "Somwewhere 1";
-            _customerPresenter.CreateUpdateCustomer();
+            _view.buttonAddUpdateCustomer();
 
             // model test
             long expected = 4444444444;
@@ -124,7 +124,7 @@ namespace ShowCustomersTest
             _view.CPRText = "5555555555";
             _view.AddressText = "Somwewhere 1";
 
-            _customerPresenter.CreateUpdateCustomer();
+            _view.buttonAddUpdateCustomer();
 
             string expected = "555555Bruger er oprettet. Bruger indlæst";
             string actual = _view.DisplayUser;
@@ -138,14 +138,14 @@ namespace ShowCustomersTest
             _view.NameText = "";
             _view.CPRText = "2222222222";
             _view.AddressText = "";
-            _customerPresenter.GetCustomer();
+            _view.buttonGetCustomer();
 
             _view.CurrentCreateRadio = true;
-            _accountsPresenter.CreateAccount(); // create curtrent account
+            _view.buttonCreateAccount(); // create curtrent account
 
             _view.CurrentCreateRadio = false;
             _view.BudgetCreateRadio = true;
-            _accountsPresenter.CreateAccount(); // create budget account
+            _view.buttonCreateAccount(); // create budget account
 
             string expected_CurrentNumber = "123";
             string expected_CurrentTotal = ".00";
@@ -170,14 +170,14 @@ namespace ShowCustomersTest
             _view.NameText = "";
             _view.CPRText = "1111111111";
             _view.AddressText = "";
-            _customerPresenter.GetCustomer();
+            _view.buttonGetCustomer();
 
             _view.CurrentCreateRadio = true;
-            _accountsPresenter.CreateAccount(); // create current account
+            _view.buttonCreateAccount(); // create current account
 
             _view.CurrentCreateRadio = false;
             _view.BudgetCreateRadio = true;
-            _accountsPresenter.CreateAccount(); // create budget account
+            _view.buttonCreateAccount(); // create budget account
 
             string expected_CurrentNumber = "123";
             string expected_CurrentTotal = "100.00";
@@ -202,12 +202,12 @@ namespace ShowCustomersTest
             _view.NameText = "";
             _view.CPRText = "1111111111";
             _view.AddressText = "";
-            _customerPresenter.GetCustomer();
+            _view.buttonGetCustomer();
 
             _view.BudgetModifyRadio = true;
             _view.AmountText = "50";
             _view.DatePick = DateTime.Today.ToString();
-            _accountsPresenter.InsertTransaction();
+            _view.buttonInsert();
 
 
             string dateExpected = "28-04-2018 00:00:00";
@@ -230,17 +230,17 @@ namespace ShowCustomersTest
             _view.NameText = "";
             _view.CPRText = "1111111111";
             _view.AddressText = "";
-            _customerPresenter.GetCustomer();
+            _view.buttonGetCustomer();
 
             _view.BudgetModifyRadio = true;
             _view.AmountText = "50";  // 1. Transact
             _view.DatePick = DateTime.Today.ToString();
-            _accountsPresenter.InsertTransaction();
+            _view.buttonInsert();
 
             _view.AmountText = "-100"; // 2. Transact
-            _accountsPresenter.InsertTransaction();
+            _view.buttonInsert();
 
-            _customerPresenter.LogOut(); // log out
+            _view.buttonLogOut(); // log out
 
             Trace.WriteLine(_view.BudgetList);
 
@@ -250,7 +250,7 @@ namespace ShowCustomersTest
             Assert.AreEqual(totallogOutExpected, totallogOutActual);
 
             _view.CPRText = "1111111111";
-            _customerPresenter.GetCustomer(); // log in
+            _view.buttonGetCustomer(); // log in
 
             Trace.WriteLine(_view.BudgetList);
 
