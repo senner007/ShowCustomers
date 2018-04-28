@@ -9,17 +9,16 @@ namespace ShowCustomers.Models
         public Customer UpdateCustomer(long cpr, string name, string address)
         {
             Customer customer = FindCustomer(cpr);
-            if (customer != null)
+            if (customer == null) return null; // defined as a "Guard Clause"
+       
+            if (FindByName(name) == null)
             {
-                if (FindByName(name) == null)
-                {
-                    Console.WriteLine("MODEL : Customer name updated");
-                    customer.Name = name;
-                    return customer;
-                }
-                Console.WriteLine("MODEL : Customer address updated");
-                customer.Address = address;
+                Console.WriteLine("MODEL : Customer name updated");
+                customer.Name = name;
+                return customer;
             }
+            Console.WriteLine("MODEL : Customer address updated");
+            customer.Address = address;
             return null;
         }
         public Customer CreateCustomer(long cpr, string name, string address)
@@ -59,7 +58,7 @@ namespace ShowCustomers.Models
         public IEnumerable<string[]> TransactionsToArray(Account account)
         {
             if (account == null) return null;
-                return account.Transactions.Select(t =>  new string[3]
+            return account.Transactions.Select(t =>  new string[3]
                  { t.Date, t.Value.Decimals2(), t.Total.Decimals2() });
         }
 
