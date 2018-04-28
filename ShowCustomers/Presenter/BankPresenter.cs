@@ -6,11 +6,8 @@ namespace ShowCustomers.Presenter
 {
     public abstract class BankPresenter
     {      
-        protected ICustomer _view;
-        protected long LoginCPR { get; private set; } = 0;
-        protected ManageAccounts _manage = new ManageAccounts();
+        protected ICustomer _view;      
         protected Determine determine = new Determine(); // should maybe be static
-
 
         protected void ShowLabel()
         {

@@ -6,7 +6,6 @@ namespace ShowCustomers.Presenter
 {
 
     public delegate void EventWithArgs(bool success, string message, string fail); // necessary ?
-   
 
     public class CustomerPresenter : BankPresenter
     {
