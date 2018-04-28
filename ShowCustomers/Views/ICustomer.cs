@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ShowCustomers.Views  // TODO : split op i flere view og presenters
 {

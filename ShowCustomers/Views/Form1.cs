@@ -19,7 +19,6 @@ namespace ShowCustomers
             AllocConsole();  // Console output
             customerpresenter = new CustomerPresenter(this); // instantiate presenter
             accountspresenter = new AccountsPresenter(this, customerpresenter);
-
         }
 
         [DllImport("kernel32.dll", SetLastError = true)] // Console output
@@ -57,7 +56,6 @@ namespace ShowCustomers
         public IEnumerable<string[]> CurrentList
         {
             set
-
             {
                 if (value == null) listCurrent.Items.Clear();
 
@@ -89,15 +87,10 @@ namespace ShowCustomers
         public event Action OnInsert;
 
         private void buttonUpdateCustomer_Click(object sender, EventArgs e) => OnAddCustomer();
-
-        private void buttonGetCustomer_Click(object sender, EventArgs e)  => OnGetCustomer(); // Invoke event
-        
-        private void OnTextChange_TextChanged(object sender, EventArgs e)  => OnTextChange();
-        
-        private void buttonCreateAccount_Click(object sender, EventArgs e)  => OnCreateAccount();           
-        
+        private void buttonGetCustomer_Click(object sender, EventArgs e)  => OnGetCustomer(); // Invoke event 
+        private void OnTextChange_TextChanged(object sender, EventArgs e)  => OnTextChange();   
+        private void buttonCreateAccount_Click(object sender, EventArgs e)  => OnCreateAccount();                
         private void buttonLogOut_Click(object sender, EventArgs e)  => OnLogOut();       
-
         private void buttonInsert_Click(object sender, EventArgs e)  => OnInsert();
 
 

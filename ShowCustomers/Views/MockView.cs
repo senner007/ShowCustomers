@@ -38,15 +38,10 @@ namespace ShowCustomers.Views
         public event Action OnTextChange;
 
         public void buttonAddUpdateCustomer() => OnAddCustomer();
-
         public void buttonGetCustomer() => OnGetCustomer(); // Invoke event
-
         public void buttonTextChange() => OnTextChange();
-
         public void buttonCreateAccount() => OnCreateAccount();
-
         public void buttonLogOut() => OnLogOut();
-
         public void buttonInsert() => OnInsert();
 
     }

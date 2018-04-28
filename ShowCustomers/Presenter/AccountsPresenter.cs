@@ -22,8 +22,6 @@ namespace ShowCustomers.Presenter
             _customerPresenter.CallGetTransactions += GetTransactions;
             _customerPresenter.CallShowAccounts += ShowAccounts;
             _customerPresenter.CallClearAccounts += ClearAccounts;
-
-
         }
 
         void GetTransactions()
@@ -32,10 +30,9 @@ namespace ShowCustomers.Presenter
             long _loginCPR = _customerPresenter.LoginCPR;
 
             _view.BudgetList = _manage.TransactionsToArray(_manage.GetBudgetAccount(_loginCPR));
-
             _view.CurrentList = _manage.TransactionsToArray(_manage.GetCurrentAccount(_loginCPR));
-
         }
+
         bool _Insert()
         {
             long _loginCPR = _customerPresenter.LoginCPR;
@@ -58,19 +55,15 @@ namespace ShowCustomers.Presenter
                     return true;
                 };
             }
-        return false;
-
+            return false;
         }
+
         bool _Create()
         {
             long _loginCPR = _customerPresenter.LoginCPR;
             if (_loginCPR == 0 || (!_view.CurrentCreateRadio && !_view.BudgetCreateRadio)) return false;
             return _view.BudgetCreateRadio ? _manage.BudgetCreate(_loginCPR) : _manage.CurrentCreate(_loginCPR);
-        }
-
-        void CreateAccount() => ShowAccounts(_Create() , "Account opened", "Open account failure");
-     
-        void InsertTransaction() => ShowAccounts(_Insert(), "Transaction completed", "Invalid transaction");         
+        }      
 
         void ShowAccounts(bool show, string message = "", string fail = "")
         {
@@ -98,6 +91,10 @@ namespace ShowCustomers.Presenter
             _view.BudgetList = null; // fjern transaktioner
             _view.CurrentList = null;
         }
+
+        void CreateAccount() => ShowAccounts(_Create(), "Account opened", "Open account failure");
+
+        void InsertTransaction() => ShowAccounts(_Insert(), "Transaction completed", "Invalid transaction");
     }
     
     

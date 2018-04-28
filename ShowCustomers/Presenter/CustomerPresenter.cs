@@ -34,17 +34,17 @@ namespace ShowCustomers.Presenter
             // Update customer
             if (LoginCPR != 0 && cpr == LoginCPR) // updating as user requires user logged in and typed CPR is correct
             {
-                    DisplayCustomer(_manage.UpdateCustomer(LoginCPR, _view.NameText, _view.AddressText), 
-                        "Name and address updated. User logged in",  
-                        "Address updated. Name not updated, Name already exists.");
+                DisplayCustomer(_manage.UpdateCustomer(LoginCPR, _view.NameText, _view.AddressText), 
+                "Name and address updated. User logged in",  
+                "Address updated. Name not updated, Name already exists.");
 
             }
             // Create Customer
             else if (LoginCPR == 0) // creating a custumer requires that no user is logged in
             {
-                    DisplayCustomer(_manage.CreateCustomer(cpr, _view.NameText, _view.AddressText), 
-                        "created. User logged in",  
-                        "User not Created. Name or CPR already exists");
+                DisplayCustomer(_manage.CreateCustomer(cpr, _view.NameText, _view.AddressText), 
+                "created. User logged in",  
+                "User not Created. Name or CPR already exists");
             }
         }
 
@@ -57,16 +57,18 @@ namespace ShowCustomers.Presenter
             if (determine.IfCPR(_view.CPRText))
             {
                 DisplayCustomer(_manage.FindCustomer(Convert.ToInt64(_view.CPRText)), 
-                    "is logged in by CPR", 
-                    "CPR not found");
+                "is logged in by CPR", 
+                "CPR not found");
+
             } //Get user by name          
             else if (determine.IfName(_view.NameText))
             {
                 DisplayCustomer(_manage.FindByName(_view.NameText), 
-                    "is logged in by name", 
-                    "Name not found");
+                "is logged in by name", 
+                "Name not found");
             }             
         }
+
         void DisplayCustomer(Customer customer, string message, string fail)
         { 
             ClearLabel(); // clear user related textboxes and labels
@@ -76,9 +78,7 @@ namespace ShowCustomers.Presenter
             CallShowAccounts(true, "", ""); //  Call ShowAccounts from accounts presenter
             CallGetTransactions();   // call GetTransactions from accounts presenter                 
         }
-        void LogOut()
-        {        
-            DisplayCustomer(null, "", "Insert either name or CPR");
-        }
+
+        void LogOut() => DisplayCustomer(null,"", "Insert either name or CPR");
     }
 }

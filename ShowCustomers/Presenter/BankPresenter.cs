@@ -1,5 +1,4 @@
 ﻿using ShowCustomers.Views;
-using ShowCustomers.Models;
 
 
 namespace ShowCustomers.Presenter
@@ -16,6 +15,7 @@ namespace ShowCustomers.Presenter
             _view.error_CPRText = determine.IfCPR(_view.CPRText) ? "" : "Type valid 10 digit CPR";
             _view.error_AddressText = determine.IfAddress(_view.AddressText) ? "" : "Address is to begin with a letter, must contain white space, must contain 1 number";
         }
+
         protected void ClearLabel()
         {
             _view.error_NameText = "";
@@ -23,8 +23,7 @@ namespace ShowCustomers.Presenter
             _view.error_AddressText = "";
             _view.NameText = "";
             _view.CPRText = "";
-            _view.AddressText = "";
-       
+            _view.AddressText = "";      
         }
        
     }
