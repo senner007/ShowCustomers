@@ -2,7 +2,7 @@
 using ShowCustomers.Models;
 using ShowCustomers.Views;
 
-namespace ShowCustomers.Presenter
+namespace ShowCustomers.Presenter 
 {
 
     public delegate void EventWithArgs(bool success, string message, string fail); // necessary ?
@@ -32,7 +32,7 @@ namespace ShowCustomers.Presenter
 
             long cpr = Convert.ToInt64(_view.CPRText);
             // Update customer
-            if (LoginCPR != 0 && cpr == LoginCPR) // updating as user requires user logged in and typed CPR is correct
+            if (LoginCPR != 0 && cpr == LoginCPR) // updating user requires user logged in and a CPR to match users
             {
                 DisplayCustomer(_manage.UpdateCustomer(LoginCPR, _view.NameText, _view.AddressText), 
                 "Name and address updated. User logged in",  
@@ -40,12 +40,13 @@ namespace ShowCustomers.Presenter
 
             }
             // Create Customer
-            else if (LoginCPR == 0) // creating a custumer requires that no user is logged in
+            else if (LoginCPR == 0) // creating a customer requires that no user is logged in
             {
                 DisplayCustomer(_manage.CreateCustomer(cpr, _view.NameText, _view.AddressText), 
                 "created. User logged in",  
                 "User not Created. Name or CPR already exists");
             }
+               
         }
 
         void GetCustomer()
