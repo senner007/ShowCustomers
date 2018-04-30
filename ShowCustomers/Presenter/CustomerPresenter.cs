@@ -25,7 +25,7 @@ namespace ShowCustomers.Presenter
             _view.OnLogOut += LogOut;
            
         }
-
+        // default is internal
         void CreateUpdateCustomer() 
         {          
             if (!determine.IfValidUser(_view.NameText, _view.CPRText, _view.AddressText)) return;
